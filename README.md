@@ -8,7 +8,7 @@ Basically, they are what I use in daily basis. Tried to add a bootstrap.sh file 
 
 First, you need to get bootstrap.sh: 
 ```bash
-whet https://raw.githubusercontent.com/gokaygurcan/dotfiles/master/bootstrap.sh
+wget https://raw.githubusercontent.com/gokaygurcan/dotfiles/master/bootstrap.sh
 ```
 
 Run  
