@@ -1,0 +1,38 @@
+[user]
+	name = Gökay Gürcan
+	email = gokaygurcan@gmail.com
+
+[github]
+	user = gokaygurcan
+
+[alias]
+    prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    stat = status -s
+    who = shortlog --numbered --summary --email --no-merges
+
+    soft-reset = reset --soft HEAD~1
+    hard-reset = reset --hard HEAD~1
+
+[commit]
+  template = ~/.gitmessage
+
+[color]
+    ui = auto
+    interactive = auto
+
+[core]
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    autocrlf = input
+
+[fetch]
+  prune = true
+
+[merge]
+  ff = only
+
+[push]
+    default = simple
+
+[rebase]
+  autosquash = true
