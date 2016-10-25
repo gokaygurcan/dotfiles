@@ -100,7 +100,9 @@ if test ! $(which brew); then
   echo -e "export INFOPATH=\"\$HOME/.linuxbrew/share/info:\$INFOPATH\"" >> ~/.bashrc
 
   # Source .bashrc file after *brew install
-  source $HOME/.bashrc
+  set +u
+  source ~/.bash_profile
+  set -u 
 fi
 
 # Update brew to the latest
