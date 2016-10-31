@@ -53,6 +53,12 @@ if [ $OS == "linux" ]; then
   sudo apt-get update
 fi
 
+# Install dependencies
+if [ $OS == "linux" ]; then
+  echo "$RED ~ Install : $GREEN Dependencies $RESET"
+  sudo apt-get install -y build-essential curl git python-setuptools ruby
+fi
+
 # Install Git
 if test ! $(which git); then
   echo "$RED ~ Install: $GREEN Git $RESET"
@@ -78,7 +84,6 @@ fi
 # Install Ruby
 if test ! $(which ruby); then
   echo "$RED ~ Install: $GREEN Ruby $RESET"
-  sudo apt-get install build-essential -y && sudo apt-get install ruby -y
 
   echo $BLUE $(ruby --version) $RESET
 fi
@@ -87,22 +92,23 @@ fi
 if test ! $(which brew); then
   if [ $OS == "linux" ]; then
     echo "$RED ~ Install: $GREEN Linuxbrew $RESET"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/linuxbrew/go/install)"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+    PATH="$HOME/.linuxbrew/bin:$PATH"
   elif [ $OS == "macos" ]; then
     echo "$RED ~ Install: $GREEN Homebrew $RESET"
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
-  # Update .bashrc and export brew paths
-  echo -e "\n# brew \n" >> ~/.bashrc
-  echo -e "export PATH=\"\$HOME/.linuxbrew/bin:\$PATH\"" >> ~/.bashrc
-  echo -e "export MANPATH=\"\$HOME/.linuxbrew/share/man:\$MANPATH\"" >> ~/.bashrc
-  echo -e "export INFOPATH=\"\$HOME/.linuxbrew/share/info:\$INFOPATH\"" >> ~/.bashrc
+  # Create .bash_profile
+  if ! [ -f $HOME/.bash_profile ]; then
+    touch $HOME/.bash_profile
+  fi
 
-  # Source .bashrc file after *brew install
-  set +u
-  source ~/.bash_profile
-  set -u 
+  # Update .bash_profile
+  echo 'export PATH="$HOME/.linuxbrew/bin:$PATH"' >> ~/.bash_profile
+
+  # Source .bash_profile file after *brew install
+  source $HOME/.bash_profile
 fi
 
 # Update brew to the latest
