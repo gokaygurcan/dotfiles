@@ -250,17 +250,32 @@ sudo npm install --global --quiet ${modules8[@]}
 sudo npm install --global --quiet ${modules9[@]}
 
 # Install *brew formulas
-formulas=(
-  coreutils     # GNU core utilities
-  git-extras    # GIT utilities
-  git-flow      # gitflow
-  tree          # A recursive directory listing command
-  unrar         # WinRAR provides the full RAR and ZIP file support
-  youtube-dl    # a small command-line program to download videos from YouTube.com and a few more sites
+formulas1=(
+  awscli            # The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services
+  coreutils         # GNU core utilities
+  git-extras        # GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
+  git-flow          # Git extensions to provide high-level repository operations for Vincent Driessen's branching model
+  git-lfs           # Git extension for versioning large files
+  gource            # Software version control visualization
+  neo4j             # The world’s fastest and most scalable graph database
+  nmap              # Provide administrators/auditors/hackers with an advanced tool for exploring their networks
+  openssl           # Provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols
+  phantomjs         # PhantomJS is a headless WebKit scriptable with a JavaScript API
+  terminal-notifier # Send User Notifications on Mac OS X 10.8 from the command-line
+  tree              # A recursive directory listing command
+  unrar             # WinRAR provides the full RAR and ZIP file support
+  youtube-dl        # a small command-line program to download videos from YouTube.com and a few more sites
+)
+
+formulas2=(
+  chromedriver                # WebDriver is an open source tool for automated testing of webapps across many browsers
+  geckodriver                 # WebDriver <-> Marionette proxy
+  selenium-server-standalone  # Selenium automates browsers
 )
 
 echo "$RED ~ Install: $GREEN Brew formulas $RESET"
-brew install ${formulas[@]}
+brew install ${formulas1[@]}
+brew install ${formulas2[@]}
 
 if [ $OS == "linux" ]; then
   # Install missing dependencies
