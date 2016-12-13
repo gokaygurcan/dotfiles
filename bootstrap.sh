@@ -313,6 +313,10 @@ if [ ! -d $HOME/.dotfiles ]; then
 
   # Move and source the files
   if [ -d $HOME/.dotfiles ]; then
+    rm -rf $HOME/.dotfiles/.git # remove git folder
+    rm $HOME/.dotfiles/LICENSE
+    rm $HOME/.dotfiles/README.md
+
     FILES=$(ls -A $HOME/.dotfiles/)
 
     for FILE in $FILES
