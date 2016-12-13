@@ -88,6 +88,21 @@ if test ! $(which ruby); then
   echo $BLUE $(ruby --version) $RESET
 fi
 
+# Install Pip
+if test ! $(which pip); then
+  echo "$RED ~ Install: $GREEN Pip $RESET"
+
+  if [ $OS == "linux" ]; then
+    sudo apt-get -y install python-pip
+  elif [ $OS == "macos" ]; then
+    sudo easy_install pip
+  fi
+  
+  sudo pip install --upgrade pip
+
+  echo $BLUE $(pip --version) $RESET
+fi
+
 # Install Homebrew/Linuxbrew
 if test ! $(which brew); then
   if [ $OS == "linux" ]; then
@@ -151,53 +166,116 @@ if test $(which npm); then
 fi
 
 # Install Node.js modules
-modules=(
+modules1=(
+  angcli            # Command-line interface for Angular apps
   ava               # Futuristic test runner
   bower             # The browser package manager
   browser-sync      # Live CSS Reload & Browser Syncing
   browserify        # Browser-side require() the node way
+)
+
+modules2=(
   codeceptjs        # Modern Era Aceptance Testing Framework for NodeJS
   commitizen        # Git commit, but play nice with conventions
+  coveralls         # Takes json-cov output into stdin and POSTs to coveralls.io
   csslint           # Automated linting of Cascading Stylesheets
   david             # Watching your NodeJS dependencies
+)
+
+modules3=(
   express-generator # Express' application generator
   editorconfig-cli  # Initialize .editorconfig in your bash
   eslint            # An AST-based pattern checker for JavaScript
+  fast-cli          # Test your download speed using fast.com
   forever           # A simple CLI tool for ensuring that a given node script runs continuously
+)
+
+modules4=(
+  greenkeeper       # Your software, up to date, all the time
   grunt             # The JavaScript Task Runner
   grunt-cli         # The grunt command line interface
   gulp              # The streaming build system
   horizon           # An open-source developer platform for building realtime, scalable web apps
+)
+
+modules5=(
   http-server       # A simple zero-configuration command-line http server
   jscs              # JavaScript Code Style
   jshint            # Static analysis tool for JavaScript
+  json              # A 'json' command for massaging and processing JSON on the command line
   json-server       # Serves JSON files through REST routes
+)
+
+modules6=(
+  localtunnel       # Expose localhost to the world
   lodash-cli        # The Lodash command-line interface
   nativefier        # Wrap web apps natively
+  nodemon           # Simple monitor script for use during development of a node.js app
+  now               # Realtime global deployments
+)
+
+modules7=(
+  nsp               # The Node Security (nodesecurity.io) command line interface
   nyc               # A code coverage tool that works well with subprocesses
   pageres-cli       # Capture website screenshots
+  pm2               # Production process manager for Node.JS applications with a built-in load balancer
   sassdoc           # A documentation tool for Sass
+)
+
+modules8=(
+  ts-node           # TypeScript execution environment and REPL for node
+  typings           # The TypeScript definition manager
   typescript        # TypeScript is a language for application scale JavaScript development
+  v8-profiler       # Node bindings for the v8 profiler
   vue-cli           # A simple CLI for scaffolding Vue.js projects
+)
+
+modules9=(
   webdriverio       # A nodejs bindings implementation for selenium 2.0/webdriver
+  webpack           # Packs CommonJs/AMD modules for the browser
   xo                # JavaScript happiness style linter
+  yarn              # Fast, reliable, and secure dependency management
+  yo                # CLI tool for running Yeoman generators
 )
 
 echo "$RED ~ Install: $GREEN Node.js modules $RESET"
-sudo npm install --global --quiet ${modules[@]}
+sudo npm install --global --quiet ${modules1[@]}
+sudo npm install --global --quiet ${modules2[@]}
+sudo npm install --global --quiet ${modules3[@]}
+sudo npm install --global --quiet ${modules4[@]}
+sudo npm install --global --quiet ${modules5[@]}
+sudo npm install --global --quiet ${modules6[@]}
+sudo npm install --global --quiet ${modules7[@]}
+sudo npm install --global --quiet ${modules8[@]}
+sudo npm install --global --quiet ${modules9[@]}
 
 # Install *brew formulas
-formulas=(
-  coreutils     # GNU core utilities
-  git-extras    # GIT utilities
-  git-flow      # gitflow
-  tree          # A recursive directory listing command
-  unrar         # WinRAR provides the full RAR and ZIP file support
-  youtube-dl    # a small command-line program to download videos from YouTube.com and a few more sites
+formulas1=(
+  awscli            # The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services
+  coreutils         # GNU core utilities
+  git-extras        # GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
+  git-flow          # Git extensions to provide high-level repository operations for Vincent Driessen's branching model
+  git-lfs           # Git extension for versioning large files
+  gource            # Software version control visualization
+  neo4j             # The world’s fastest and most scalable graph database
+  nmap              # Provide administrators/auditors/hackers with an advanced tool for exploring their networks
+  openssl           # Provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols
+  phantomjs         # PhantomJS is a headless WebKit scriptable with a JavaScript API
+  terminal-notifier # Send User Notifications on Mac OS X 10.8 from the command-line
+  tree              # A recursive directory listing command
+  unrar             # WinRAR provides the full RAR and ZIP file support
+  youtube-dl        # a small command-line program to download videos from YouTube.com and a few more sites
+)
+
+formulas2=(
+  chromedriver                # WebDriver is an open source tool for automated testing of webapps across many browsers
+  geckodriver                 # WebDriver <-> Marionette proxy
+  selenium-server-standalone  # Selenium automates browsers
 )
 
 echo "$RED ~ Install: $GREEN Brew formulas $RESET"
-brew install ${formulas[@]}
+brew install ${formulas1[@]}
+brew install ${formulas2[@]}
 
 if [ $OS == "linux" ]; then
   # Install missing dependencies
@@ -219,6 +297,7 @@ brew install ${extraformulas[@]}
 # Install Ruby Gems
 gems=(
   bundler   # The best way to manage a Ruby application's gems
+  compass   # Compass is a Sass-based Stylesheet Framework that streamlines the creation and maintenance of CSS
   rake      # A make-like build utility for Ruby
 )
 
@@ -234,6 +313,10 @@ if [ ! -d $HOME/.dotfiles ]; then
 
   # Move and source the files
   if [ -d $HOME/.dotfiles ]; then
+    rm -rf $HOME/.dotfiles/.git # remove git folder
+    rm $HOME/.dotfiles/LICENSE
+    rm $HOME/.dotfiles/README.md
+
     FILES=$(ls -A $HOME/.dotfiles/)
 
     for FILE in $FILES
