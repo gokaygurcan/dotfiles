@@ -88,6 +88,21 @@ if test ! $(which ruby); then
   echo $BLUE $(ruby --version) $RESET
 fi
 
+# Install Pip
+if test ! $(which pip); then
+  echo "$RED ~ Install: $GREEN Pip $RESET"
+
+  if [ $OS == "linux" ]; then
+    sudo apt-get -y install python-pip
+  elif [ $OS == "macos" ]; then
+    sudo easy_install pip
+  fi
+  
+  sudo pip install --upgrade pip
+
+  echo $BLUE $(pip --version) $RESET
+fi
+
 # Install Homebrew/Linuxbrew
 if test ! $(which brew); then
   if [ $OS == "linux" ]; then
