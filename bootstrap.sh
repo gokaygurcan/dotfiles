@@ -166,40 +166,88 @@ if test $(which npm); then
 fi
 
 # Install Node.js modules
-modules=(
+modules1=(
+  angcli            # Command-line interface for Angular apps
   ava               # Futuristic test runner
   bower             # The browser package manager
   browser-sync      # Live CSS Reload & Browser Syncing
   browserify        # Browser-side require() the node way
+)
+
+modules2=(
   codeceptjs        # Modern Era Aceptance Testing Framework for NodeJS
   commitizen        # Git commit, but play nice with conventions
+  coveralls         # Takes json-cov output into stdin and POSTs to coveralls.io
   csslint           # Automated linting of Cascading Stylesheets
   david             # Watching your NodeJS dependencies
+)
+
+modules3=(
   express-generator # Express' application generator
   editorconfig-cli  # Initialize .editorconfig in your bash
   eslint            # An AST-based pattern checker for JavaScript
+  fast-cli          # Test your download speed using fast.com
   forever           # A simple CLI tool for ensuring that a given node script runs continuously
+)
+
+modules4=(
+  greenkeeper       # Your software, up to date, all the time
   grunt             # The JavaScript Task Runner
   grunt-cli         # The grunt command line interface
   gulp              # The streaming build system
   horizon           # An open-source developer platform for building realtime, scalable web apps
+)
+
+modules5=(
   http-server       # A simple zero-configuration command-line http server
   jscs              # JavaScript Code Style
   jshint            # Static analysis tool for JavaScript
+  json              # A 'json' command for massaging and processing JSON on the command line
   json-server       # Serves JSON files through REST routes
+)
+
+modules6=(
+  localtunnel       # Expose localhost to the world
   lodash-cli        # The Lodash command-line interface
   nativefier        # Wrap web apps natively
+  nodemon           # Simple monitor script for use during development of a node.js app
+  now               # Realtime global deployments
+)
+
+modules7=(
+  nsp               # The Node Security (nodesecurity.io) command line interface
   nyc               # A code coverage tool that works well with subprocesses
   pageres-cli       # Capture website screenshots
+  pm2               # Production process manager for Node.JS applications with a built-in load balancer
   sassdoc           # A documentation tool for Sass
+)
+
+modules8=(
+  ts-node           # TypeScript execution environment and REPL for node
+  typings           # The TypeScript definition manager
   typescript        # TypeScript is a language for application scale JavaScript development
+  v8-profiler       # Node bindings for the v8 profiler
   vue-cli           # A simple CLI for scaffolding Vue.js projects
+)
+
+modules9=(
   webdriverio       # A nodejs bindings implementation for selenium 2.0/webdriver
+  webpack           # Packs CommonJs/AMD modules for the browser
   xo                # JavaScript happiness style linter
+  yarn              # Fast, reliable, and secure dependency management
+  yo                # CLI tool for running Yeoman generators
 )
 
 echo "$RED ~ Install: $GREEN Node.js modules $RESET"
-sudo npm install --global --quiet ${modules[@]}
+sudo npm install --global --quiet ${modules1[@]}
+sudo npm install --global --quiet ${modules2[@]}
+sudo npm install --global --quiet ${modules3[@]}
+sudo npm install --global --quiet ${modules4[@]}
+sudo npm install --global --quiet ${modules5[@]}
+sudo npm install --global --quiet ${modules6[@]}
+sudo npm install --global --quiet ${modules7[@]}
+sudo npm install --global --quiet ${modules8[@]}
+sudo npm install --global --quiet ${modules9[@]}
 
 # Install *brew formulas
 formulas=(
