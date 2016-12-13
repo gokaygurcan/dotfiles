@@ -4,7 +4,7 @@
 # ----------------------------
 
 # path exports
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/bin/node:/usr/local/opt/go/libexec/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/.linuxbrew/bin:$PATH"
 
 if [ -d ~/bin ]; then
   # add your bin folder to the path, if you have it.
