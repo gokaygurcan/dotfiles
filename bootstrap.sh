@@ -297,6 +297,7 @@ brew install ${extraformulas[@]}
 # Install Ruby Gems
 gems=(
   bundler   # The best way to manage a Ruby application's gems
+  compass   # Compass is a Sass-based Stylesheet Framework that streamlines the creation and maintenance of CSS
   rake      # A make-like build utility for Ruby
 )
 
