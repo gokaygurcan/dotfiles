@@ -275,7 +275,7 @@ formulas2=(
 
 echo "$RED ~ Install: $GREEN Brew formulas $RESET"
 brew install ${formulas1[@]}
-brew install ${formulas2[@]}
+# brew install ${formulas2[@]}
 
 if [ $OS == "linux" ]; then
   # Install missing dependencies
