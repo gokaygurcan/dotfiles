@@ -223,18 +223,22 @@ modules7=(
 )
 
 modules8=(
+  surge             # CDN for front-end developers
   ts-node           # TypeScript execution environment and REPL for node
   typings           # The TypeScript definition manager
   typescript        # TypeScript is a language for application scale JavaScript development
   v8-profiler       # Node bindings for the v8 profiler
-  vue-cli           # A simple CLI for scaffolding Vue.js projects
 )
 
 modules9=(
+  vue-cli           # A simple CLI for scaffolding Vue.js projects
   webdriverio       # A nodejs bindings implementation for selenium 2.0/webdriver
   webpack           # Packs CommonJs/AMD modules for the browser
   xo                # JavaScript happiness style linter
   yarn              # Fast, reliable, and secure dependency management
+)
+
+modules10=(
   yo                # CLI tool for running Yeoman generators
 )
 
@@ -248,6 +252,7 @@ sudo npm install --global --quiet ${modules6[@]}
 sudo npm install --global --quiet ${modules7[@]}
 sudo npm install --global --quiet ${modules8[@]}
 sudo npm install --global --quiet ${modules9[@]}
+sudo npm install --global --quiet ${modules10[@]}
 
 # Install *brew formulas
 formulas1=(
