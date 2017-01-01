@@ -147,11 +147,13 @@ if test ! $(which node); then
     # Claim /usr/local/
     sudo chown $USER:$USER -R /usr/local
 
-    # Installw/o sudo
+    # Install w/o sudo
     n latest
+    n lts
   elif [ $OS == "macos" ]; then
-    # Install  w/ sudo
+    # Install w/ sudo
     sudo n latest
+    sudo n lts
   fi
 
   echo $BLUE $(node --version) $RESET
@@ -266,16 +268,15 @@ formulas1=(
   nmap              # Provide administrators/auditors/hackers with an advanced tool for exploring their networks
   openssl           # Provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols
   phantomjs         # PhantomJS is a headless WebKit scriptable with a JavaScript API
-  terminal-notifier # Send User Notifications on Mac OS X 10.8 from the command-line
   tree              # A recursive directory listing command
   unrar             # WinRAR provides the full RAR and ZIP file support
   youtube-dl        # a small command-line program to download videos from YouTube.com and a few more sites
 )
 
 formulas2=(
-  chromedriver                # WebDriver is an open source tool for automated testing of webapps across many browsers
-  geckodriver                 # WebDriver <-> Marionette proxy
-  selenium-server-standalone  # Selenium automates browsers
+  chromedriver               # WebDriver is an open source tool for automated testing of webapps across many browsers
+  geckodriver                # WebDriver <-> Marionette proxy
+  selenium-server-standalone # Selenium automates browsers
 )
 
 echo "$RED ~ Install: $GREEN Brew formulas $RESET"
@@ -287,12 +288,13 @@ if [ $OS == "linux" ]; then
   sudo apt-get install libncursesw5 libncursesw5-dev -y
 
   extraformulas=(
-    htop        # An interactive text-mode process viewer for Unix systems
+    htop              # An interactive text-mode process viewer for Unix systems
   )
 elif [ $OS == "macos" ]; then
   extraformulas=(
-    htop-osx    # A port of htop to OSX
-    wget        # A free software package for retrieving files
+    htop-osx          # A port of htop to OSX
+    terminal-notifier # Send User Notifications on Mac OS X 10.8 from the command-line
+    wget              # A free software package for retrieving files
   )
 fi
 
@@ -330,5 +332,9 @@ if [ ! -d $HOME/.dotfiles ]; then
       mv $HOME/.dotfiles/$FILE $HOME/$FILE
       source $HOME/$FILE
     done
+    
+    rm $HOME/bootstrap.sh
+    sudo chmod +x docker.sh
+    sudo chmod +x nginx.sh
   fi
 fi
