@@ -12,7 +12,7 @@
 
 set -e
 
-# Set colors
+# set colors
 BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
@@ -24,36 +24,26 @@ WHITE=$(tput setaf 7)
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 
-# Detect OS
-if [[ "$OSTYPE" == "linux"* ]]; then
-  OS="linux"
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-  OS="macos"
+# global variables
+SRC_NGINX=/usr/src/nginx
+ARCH=x64
+
+# versions
+NGINX_VERSION=${NGINX_VERSION:=1.12.1}
+PAGESPEED_VERSION=${PAGESPEED_VERSION:=1.12.34.2}
+OPENSSL_VERSION=${OPENSSL_VERSION:=1.1.0f}
+
+# check if architecture is correct
+if [ "$(uname -m)" = x86_64 ]; then
+  ARCH=x64
 else
-  OS="other"
+  ARCH=ia32
 fi
-echo "$RED ~ Detect : $GREEN ${OS} $RESET"
-
-# Continue only if OS is linux, macos will follow later.
-if [ $OS == "linux" ]; then
-  echo $BLUE $(uname -a) $RESET
-else
-  echo "$RED  Exiting.. $RESET"
-  exit 1
-fi
-
-# Global variables
-SRC_ROOT=/usr/src
-NSRC_ROOT=/usr/src/nginx
-
-# Versions
-NGINX_VERSION=${NGINX_VERSION:=1.10.2}
-NPS_VERSION=${NPS_VERSION:=1.11.33.4}
 
 # create nginx source directory
-if [ ! -d ${NSRC_ROOT} ]; then
-  echo "$RED ~ Create : $GREEN $NSRC_ROOT $RESET"
-  mkdir -p ${NSRC_ROOT}
+if [ ! -d ${SRC_NGINX} ]; then
+  echo "$RED ~ Create : $GREEN $SRC_NGINX $RESET"
+  mkdir -p ${SRC_NGINX}
 fi
 
 echo "$RED ~ Update : $GREEN Packages $RESET"
@@ -62,33 +52,47 @@ sudo apt-get upgrade -y
 
 echo "$RED ~ Install : $GREEN Packages and libraries $RESET"
 sudo apt-get install -y build-essential openssl libssl-dev libssl-doc libgeoip-dev \
-  fail2ban aria2 sysstat links libpcre3 libpcre3-dev zlibc zlib1g zlib1g-dev \
+  fail2ban aria2 sysstat links libpcre3 libpcre3-dev zlibc zlib1g zlib1g-dbg zlib1g-dev \
   perl libnet-ssleay-perl libauthen-pam-perl libpam-runtime libio-pty-perl \
   apt-show-versions htop iotop iftop xtail unzip git curl python python-setuptools ruby
 
 echo "$RED ~ Download : $GREEN NGINX and its modules $RESET"
-cd ${NSRC_ROOT}
-sudo wget https://github.com/pagespeed/ngx_pagespeed/archive/release-${NPS_VERSION}-beta.zip
-sudo unzip release-${NPS_VERSION}-beta.zip
+# openssl
+cd ${SRC_NGINX}
+sudo wget https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+sudo tar -xzvf openssl-${OPENSSL_VERSION}.tar.gz
 
-cd ngx_pagespeed-release-${NPS_VERSION}-beta/
-sudo wget https://dl.google.com/dl/page-speed/psol/${NPS_VERSION}.tar.gz
-sudo tar -xzvf ${NPS_VERSION}.tar.gz
+# pagespeed
+cd ${SRC_NGINX}
+sudo wget https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.tar.gz
+sudo tar -zxvf v${PAGESPEED_VERSION}-stable.tar.gz
 
-cd ${NSRC_ROOT}
+# pagespeed optimization libraries
+cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
+sudo wget https://dl.google.com/dl/page-speed/psol/${PAGESPEED_VERSION}-${ARCH}.tar.gz
+sudo tar -xzvf ${PAGESPEED_VERSION}-${ARCH}.tar.gz
+
+# headers more
+cd ${SRC_NGINX}
+sudo aria2c https://github.com/openresty/headers-more-nginx-module/archive/v0.32.tar.gz
+sudo tar -zxvf headers-more-nginx-module-0.32.tar.gz
+
+# cache purge
+cd ${SRC_NGINX}
+sudo aria2c https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz
+sudo tar -zxvf ngx_cache_purge-2.3.tar.gz
+
+# test cookie
+cd ${SRC_NGINX}
+sudo aria2c https://github.com/kyprizel/testcookie-nginx-module/tarball/master
+sudo tar -zxvf kyprizel-testcookie-nginx-module-*.tar.gz
+sudo rm kyprizel-testcookie-nginx-module-*.tar.gz 
+sudo mv kyprizel-testcookie-nginx-module-* kyprizel-testcookie-nginx-module
+
+# nginx
+cd ${SRC_NGINX}
 sudo wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 sudo tar -xvzf nginx-${NGINX_VERSION}.tar.gz
-
-cd ${NSRC_ROOT}
-sudo aria2c https://github.com/openresty/headers-more-nginx-module/archive/v0.32.tar.gz
-sudo tar zxvf headers-more-nginx-module-0.32.tar.gz
-
-sudo aria2c http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz
-sudo tar zxvf ngx_cache_purge-2.3.tar.gz
-
-sudo aria2c https://github.com/kyprizel/testcookie-nginx-module/tarball/master
-sudo mv kyprizel-testcookie-nginx-module-*.tar.gz kyprizel-testcookie-nginx.tar.gz
-sudo tar zxvf kyprizel-testcookie-nginx.tar.gz
 
 echo "$RED ~ Install : $GREEN MaxMind C API $RESET"
 cd /tmp
@@ -104,9 +108,11 @@ sudo ldconfig
 sudo ldconfig -v | grep GeoIP
 
 echo "$RED ~ Configure : $GREEN NGINX $RESET"
-cd ${NSRC_ROOT}
+cd ${SRC_NGINX}
 cd nginx-${NGINX_VERSION}/
-sudo ./configure --conf-path=/etc/nginx/nginx.conf \
+sudo ./configure \
+  --prefix=/etc/nginx \
+  --conf-path=/etc/nginx/nginx.conf \
   --sbin-path=/usr/sbin/nginx \
   --pid-path=/var/run/nginx.pid \
   --lock-path=/var/run/nginx.lock \
@@ -120,12 +126,11 @@ sudo ./configure --conf-path=/etc/nginx/nginx.conf \
   --with-http_sub_module \
   --with-file-aio \
   --with-http_addition_module \
-  --with-ipv6 \
   --with-http_geoip_module \
-  --with-debug \
-  --add-module=${NSRC_ROOT}/ngx_pagespeed-release-${NPS_VERSION}-beta \
-  --add-module=${NSRC_ROOT}/headers-more-nginx-module-0.32 \
-  --add-module=${NSRC_ROOT}/ngx_cache_purge-2.3
+  --add-module=${SRC_NGINX}/ngx_pagespeed-${PAGESPEED_VERSION}-stable \
+  --add-module=${SRC_NGINX}/headers-more-nginx-module-0.32 \
+  --add-module=${SRC_NGINX}/ngx_cache_purge-2.3 \
+  --add-module=${SRC_NGINX}/kyprizel-testcookie-nginx-module
 
 echo "$RED ~ Make : $GREEN NGINX $RESET"
 make
@@ -145,21 +150,11 @@ sudo gzip -d /usr/local/share/GeoIP/GeoLiteCity.dat.gz
 sudo wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz -O /usr/local/share/GeoIP/GeoIP.dat.gz
 sudo gzip -d /usr/local/share/GeoIP/GeoIP.dat.gz
 
-echo "$RED ~ Install : $GREEN NGINX Amplify $RESET"
-read -r -p "Do you want to install NGINX Amplify? [Y/n]: " amplify
-if [[ $amplify =~ [yY](es)* ]]; then
-  curl -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh
-
-  read -r -p "Enter your NGINX Amplify key: " key
-  API_KEY='${key}' sudo sh ./install.sh
-fi
-
 echo "$RED ~ Configure : $GREEN NGINX as a service $RESET"
 cd /etc/systemd/system/
 echo "[Unit]
-Description=The NGINX HTTP and reverse proxy server
+Description=The NGINX HTTP and Reverse Proxy Server
 After=syslog.target network.target remote-fs.target nss-lookup.target
-
 [Service]
 Type=forking
 PIDFile=/var/run/nginx.pid
@@ -168,7 +163,6 @@ ExecStart=/usr/sbin/nginx
 ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s QUIT \$MAINPID
 PrivateTmp=true
-
 [Install]
 WantedBy=multi-user.target" | sudo tee nginx.service 
 
