@@ -1,0 +1,36 @@
+# 1password socket
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+# make nano the default editor
+export EDITOR="nano"
+
+# cli color
+export CLICOLOR=1
+
+# history size
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+
+# locale
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+
+# disable tracking consoledonottrack.com
+export DO_NOT_TRACK=1
+
+# disable npm funding messages!
+export ADBLOCK=true
+
+# local bin
+if [ -d ~/.local/bin ]; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="$PATH:/Users/gokay.gurcan/.local/bin"
+  elif [[ "$OSTYPE" == "linux"* ]]; then
+    export PATH="$PATH:/home/gokay.gurcan/.local/bin"
+  fi
+fi

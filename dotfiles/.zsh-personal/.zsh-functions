@@ -1,0 +1,14 @@
+# weather amsterdam
+weather () {
+  curl http://wttr\.in/$1
+}
+
+# find pid that is listening to the port
+ppid() {
+  lsof -n -i4TCP:$1 | grep LISTEN
+}
+
+# mkdir + cd
+mk() {
+  mkdir -p "$1" && cd "$1"
+}

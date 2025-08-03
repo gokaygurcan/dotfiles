@@ -1,0 +1,61 @@
+# clear everything!
+alias cls="clear && printf '\e[3J'"
+
+# navigation
+alias ~="cd ~"
+alias cd..="cd .." # windows habits
+alias .1="cd ../"
+alias .2="cd ../../"
+alias .3="cd ../../../"
+alias .4="cd ../../../../"
+alias .5="cd ../../../../../"
+
+# list
+alias l="ls -lah"   # list all human readable
+alias lh="ls -d .*" # list hidden files
+alias lT="ls -ltr"  # list sort by time
+alias lS="ls -Slr"  # list sort by size
+
+# make basic commands interactive and verbose
+alias cp="cp -iv"                       # interactive
+alias rm="rm -ri"                       # interactive
+alias mv="mv -iv"                       # interactive, verbose
+alias grep="grep -i --color='always'"   # ignore case
+
+# mkdir
+alias mkdir="mkdir -pv"
+
+# continuous wget
+alias wget='wget -c'
+
+# numbered cat
+alias catn="cat -n"
+
+# nano with line numbers
+alias nano="nano -c"
+
+# what's my ip?
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# find raspi in the network
+alias findpi="arp -na | grep -i b8:27:eb"
+
+# ubuntu lts
+alias ubuntu="docker run -it --rm -v ~/.ssh/:/home/ubuntu/.ssh -v `pwd`:/home/ubuntu/`pwd | awk -F/ '{print $NF}'` ubuntu:latest /bin/bash"
+
+# flush dns
+alias flushdns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
+# print paths
+alias paths='echo -e ${PATH//:/\\n}'
+
+# lock screen
+alias afk="open /System/Library/CoreServices/ScreenSaverEngine.app"
+
+# macos aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # shortcuts
+  alias f="open -a Finder"
+  alias chrome="open -a Google\ Chrome"
+  alias chromebeta="open -a Google\ Chrome\ Beta"
+fi

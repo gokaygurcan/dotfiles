@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p ~/Pictures/Gitshots/$(git rev-parse --show-toplevel | awk -F/ '{print $NF}')
+imagesnap -d "FaceTime" -q -w 1 ~/Pictures/Gitshots/$(git rev-parse --show-toplevel | awk -F/ '{print $NF}')/$(date +%s).jpg

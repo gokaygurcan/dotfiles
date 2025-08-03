@@ -1,0 +1,92 @@
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXz8hoSWjrlZpJIJZwqWoV0vfRQmP1QzIe8/bCpDsJq
+  name = Gökay Gürcan
+  email = github@gokaygurcan.com
+
+[github]
+  user = gokaygurcan
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  template = ~/.git-configs/commit_message
+  gpgsign = true
+  verbose = 1
+
+[alias]
+  graph = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  hard-reset = reset --hard HEAD~1
+  soft-reset = reset --soft HEAD~1
+
+[apply]
+  ignorewhitespace = change
+  whitespace = nowarn
+
+[branch "dev"]
+  merge = refs/heads/dev
+  remote = origin
+  vscode-merge-base = origin/dev
+
+[branch "main"]
+  merge = refs/heads/main
+  remote = origin
+  vscode-merge-base = origin/main
+
+[color]
+  ui = true
+  interactive = auto
+
+[core]
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
+  autocrlf = input
+  autocrlf = input
+  filemode = true
+  ignorecase = true
+  longpaths = true
+	logallrefupdates = true
+
+[diff]
+  submodule = log
+
+[fetch]
+  prune = true
+  recurseSubmodules = on-demand
+
+[remote "origin"]
+  fetch = +refs/heads/*:refs/remotes/origin/*
+
+[http]
+  postBuffer = 1048576000
+
+[init]
+  templatedir = ~/.git-configs/template_dir
+  defaultBranch = main
+
+[log]
+  date = iso
+
+[merge]
+  ff = only
+
+[pull]
+  ff = only
+
+[push]
+  default = simple
+  gpgsign = if-asked
+
+[rebase]
+  autosquash = true
+
+[status]
+  showUntrackedFiles = no
+  submoduleSummary = true
+
+[submodule]
+  active = true

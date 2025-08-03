@@ -1,0 +1,44 @@
+# env variables
+**/.env*
+
+# temporary files
+**/~/
+**/~*
+
+# Node.js
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Vercel
+**/.next/
+**/.next-dev/
+**/.turbo/
+**/.vercel/
+
+# Cloudflare
+**/.wrangler/
+
+# test coverage
+**/coverage/
+
+# build analysis
+**/analyze/
+
+# certificates
+**/*.pem
+**/*.crt
+**/*.key
+**/*.p12
+
+# misc
+**/.DS_Store
+**/.fseventsd
+**/.Spotlight-V100
+**/.Trashes
+**/.VolumeIcon.icns
+**/Thumbs.db
