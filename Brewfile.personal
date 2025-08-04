@@ -1,0 +1,18 @@
+if OS.mac?
+  # casks
+  cask_args appdir: '/Applications', require_sha: true
+
+  cask 'calibre'                      # E-books management software
+  cask 'epic-games'                   # Launcher for *Epic Games* games
+  cask 'gog-galaxy'                   # Game client
+
+  cask_args appdir: '/Applications', require_sha: false
+
+  cask 'nvidia-geforce-now'           # Cloud gaming platform
+  cask 'retroarch'                    # Frontend for emulators, game engines and media players (OpenGL graphics API)
+  cask 'steam'                        # Video game digital distribution service
+  cask 'steamcmd'                     # Command-line client for Steam
+
+  # app store
+  mas 'Balatro+', id: 6502451661
+end

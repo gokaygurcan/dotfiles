@@ -1,0 +1,67 @@
+{
+  "actions" : [
+    {
+      "key" : "g",
+      "type" : "url",
+      "value" : "https://google.com"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "t",
+          "type" : "application",
+          "value" : "/System/Applications/Utilities/Terminal.app"
+        },
+        {
+          "key" : "v",
+          "type" : "application",
+          "value" : "/Applications/Visual Studio Code.app"
+        },
+        {
+          "key" : "i",
+          "type" : "application",
+          "value" : "/Applications/Visual Studio Code - Insiders.app"
+        }
+      ],
+      "key" : "d",
+      "type" : "group"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "g",
+          "type" : "application",
+          "value" : "/Applications/Google Chrome.app"
+        },
+        {
+          "key" : "f",
+          "type" : "application",
+          "value" : "/Applications/Firefox.app"
+        },
+        {
+          "key" : "s",
+          "type" : "application",
+          "value" : "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+        },
+        {
+          "key" : "v",
+          "type" : "application",
+          "value" : "/Applications/Vivaldi.app"
+        },
+        {
+          "key" : "o",
+          "type" : "application",
+          "value" : "/Applications/Opera.app"
+        },
+        {
+          "key" : "b",
+          "type" : "application",
+          "value" : "/Applications/Google Chrome Beta.app"
+        }
+      ],
+      "key" : "b",
+      "type" : "group"
+    }
+  ],
+  "type" : "group"
+}

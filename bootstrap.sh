@@ -72,6 +72,11 @@ if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# export brew paths
+echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/opt/homebrew/sbin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
 # brew update/upgrade
 brew update
 brew upgrade
@@ -94,10 +99,6 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   sudo xcodebuild &>/dev/null || sudo xcodebuild -license -verbose
 fi
 
-# export paths (for now, we'll overwrite .zshrc later anyway)
-echo 'export PATH="/opt/homebrew/bin:$PATH"' >> ~/.zshrc
-echo 'export PATH="/opt/homebrew/sbin:$PATH"' >> ~/.zshrc
-
 if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   mkdir ~/.nvm
 
@@ -109,9 +110,25 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   nvm install --lts
 fi
 
+# clone repository
+echo "[setup] cloning dotfiles repository"
+git clone https://github.com/gokaygurcan/dotfiles.git dotfiles
+cd dotfiles
+
 # move dotfiles
 echo "[setup] setting up dotfiles"
-mv ./dotfiles ~/
+cp -r dotfiles/.git-configs ~/
+cp -r dotfiles/.zsh-personal ~/
+cp dotfiles/.editorconfig ~/
+cp dotfiles/.gitattributes ~/
+cp dotfiles/.gitconfig ~/
+cp dotfiles/.gitignore_global ~/
+cp dotfiles/.npmrc ~/
+cp dotfiles/.nvmrc ~/
+
+if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
+  cp dotfiles/config.json ~/Library/Application\ Support/Leader\ Key
+fi
 
 # update zsh configs
 # install powerline fonts
@@ -151,7 +168,7 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   osascript -e 'tell application "System Preferences" to quit'
 
   # recursively source all .sh files in the directory
-  find "$DIR/osx" -type f -name "*.sh" | while read -r script; do
+  find "./defaults" -type f -name "*.sh" | while read -r script; do
     echo "[setup] sourcing $script"
 
     source "$script"
@@ -161,5 +178,5 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
   # backup folder
-  mv -r defaults ~/.zsh-personal/defaults
+  cp -r defaults ~/.zsh-personal/
 fi

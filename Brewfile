@@ -114,9 +114,7 @@ if OS.mac?
   cask 'betterdisplay'                # Display management tool
   cask 'brewservicesmenubar'          # Menu item for starting and stopping homebrew services
   cask 'bruno'                        # Open source IDE for exploring and testing APIs
-  cask 'calibre'                      # E-books management software
   cask 'canon-eos-utility'            # Communication with Canon EOS cameras
-  cask 'cap'                          # Screen recording software
   cask 'chatgpt'                      # OpenAI's official ChatGPT desktop app
   cask 'charles'                      # Web debugging Proxy application
   cask 'chromedriver'                 # Automated testing of webapps for Google Chrome
@@ -124,14 +122,12 @@ if OS.mac?
   cask 'discord'                      # Voice and text chat software
   cask 'disk-inventory-x'             # Disk usage utility
   cask 'displaylink'                  # Drivers for DisplayLink docks, adapters and monitors
-  cask 'epic-games'                   # Launcher for *Epic Games* games
   cask 'exifcleaner'                  # Metadata cleaner
   cask 'figma'                        # Collaborative team software
   cask 'firefox'                      # Web browser
   cask 'fliqlo'                       # Flip clock screensaver
   cask 'gitbutler'                    # Git client for simultaneous branches on top of your existing workflow
   cask 'github'                       # Desktop client for GitHub repositories
-  cask 'gog-galaxy'                   # Game client
   cask 'gpg-suite'                    # Tools to protect your emails and files
   cask 'hammerspoon'                  # Desktop automation application
   cask 'hiddenbar'                    # Utility to hide menu bar items
@@ -197,16 +193,12 @@ if OS.mac?
 
   cask 'google-chrome'                # Web browser
   cask 'google-chrome@beta'           # Web browser
-  cask 'google-trends' #
+  cask 'google-trends'                #
   cask 'logi-options+'                # Software for Logitech devices
   cask 'miro'                         # Online collaborative whiteboard platform
-  cask 'nvidia-geforce-now'           # Cloud gaming platform
   cask 'paragon-ntfs'                 # Read/write support for NTFS formatted volumes
   cask 'redis-insight'                # GUI for streamlined Redis application development
-  cask 'retroarch'                    # Frontend for emulators, game engines and media players (OpenGL graphics API)
   cask 'spotify'                      # Music streaming service
-  cask 'steam'                        # Video game digital distribution service
-  cask 'steamcmd'                     # Command-line client for Steam
 
   cask 'quicklook-json'               # Quick Look plugin for JSON files
   cask 'webpquicklook'                # Quick Look plugin for webp files
@@ -214,7 +206,6 @@ if OS.mac?
   # app store
   mas 'Amphetamine', id: 937984704
   mas 'Apple Developer', id: 640199958
-  mas 'Balatro+', id: 6502451661
   mas 'iMovie', id: 408981434
   mas 'Keynote', id: 409183694
   mas 'Magnet', id: 441258766

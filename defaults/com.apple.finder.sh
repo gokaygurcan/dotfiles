@@ -65,4 +65,4 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
 # restart Finder
-killall Finder &> /dev/null
+# killall Finder &> /dev/null

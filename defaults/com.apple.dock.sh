@@ -28,6 +28,11 @@ defaults write com.apple.dock recent-apps -array
 defaults write com.apple.dock persistent-apps -array
 defaults write com.apple.dock persistent-others -array
 
+# TODO: add persistent applications
+# Finder is given, Messages, Terminal, Chrome, VSCode, Notion, ChatGTP.
+# TODO: add persistent others
+# Applications and Downloads. Display as folders.
+
 # dock size
 defaults write com.apple.dock tilesize -float 64
 
@@ -63,4 +68,4 @@ defaults write com.apple.dock wvous-tr-corner -int 12;  # notification center
 defaults write com.apple.dock wvous-tr-modifier -int 0; # no modifier
 
 # restart Dock
-killall Dock &> /dev/null
+# killall Dock &> /dev/null

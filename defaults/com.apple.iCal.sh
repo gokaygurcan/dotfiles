@@ -7,4 +7,4 @@ defaults write com.apple.iCal "Show Week Numbers" -bool true
 defaults write com.apple.iCal "TimeZone support enabled" -bool true
 
 # restart Calendar
-killall Calendar &> /dev/null
+# killall Calendar &> /dev/null
