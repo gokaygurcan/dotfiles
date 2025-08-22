@@ -51,6 +51,11 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   fi
 fi
 
+# install zsh (just in case)
+if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
+  sudo apt-get install -y zsh
+fi
+
 # install/update oh-my-zsh
 if [[ -d ~/.oh-my-zsh ]]; then
   echo "[setup] \`oh-my-zsh\` installed, skipping."
@@ -68,7 +73,7 @@ else
 fi
 
 if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
-  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
