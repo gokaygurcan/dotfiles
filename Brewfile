@@ -7,7 +7,6 @@
 #################
 
 # formulae
-brew 'acronym'                        # Python-based tool for creating English-ish acronyms from your fancy project
 brew 'autoconf'                       # Automatic configure script builder
 brew 'automake'                       # Tool for generating GNU Standards-compliant Makefiles
 brew 'awk'                            # Text processing scripting language
@@ -60,9 +59,6 @@ brew 'htop'                           # Improved top (interactive process viewer
 brew 'httpie'                         # User-friendly cURL replacement (command-line HTTP client)
 brew 'icann-rdap'                     # Full-rich client for the Registry Data Access Protocol (RDAP) sponsored by ICANN
 brew 'imagemagick'                    # Tools and libraries to manipulate images in many formats
-if OS.mac?
-  brew 'imagesnap'                    # Tool to capture still images from an iSight or other video source
-end
 brew 'invoice'                        # Command-line invoice generator
 brew 'jpeg-turbo'                     # JPEG image codec that aids compression and decompression
 brew 'jpeg-xl'                        # New file format for still image compression
@@ -70,7 +66,6 @@ brew 'jq'                             # Lightweight and flexible command-line JS
 brew 'libtool'                        # Generic library support script
 brew 'llvm'                           # Next-gen compiler infrastructure
 brew 'make'                           # Utility for directing compilation
-brew 'mas'                            # Mac App Store command-line interface
 brew 'mkcert'                         # Simple tool to make locally trusted development certificates
 brew 'nano'                           # Free (GNU) replacement for the Pico text editor
 brew 'nmap'                           # Port scanning utility for large networks
@@ -79,14 +74,12 @@ brew 'nvm'                            # Manage multiple Node.js versions
 brew 'openjpeg'                       # Library for JPEG-2000 image manipulation
 brew 'openssl@3'                      # Cryptography and SSL/TLS Toolkit
 brew 'pnpm'                           # Fast, disk space efficient package manager
-brew 'proctools'                      # OpenBSD and Darwin versions of pgrep, pkill, and pfind
 brew 'pstree'                         # Show ps output as a tree
 brew 'sqlite'                         # Command-line interface for SQLite
 brew 'python@3.13'                    # Interpreted, interactive, object-oriented programming language
 brew 'stow'                           # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew 'tailwindcss'                    # Utility-first CSS framework
 brew 'tcpdump'                        # Command-line packet analyzer
-brew 'telnet'                         # User interface to the TELNET protocol
 brew 'tmux'                           # Terminal multiplexer
 brew 'unzip'                          # Extraction utility for .zip compressed archives
 brew 'uv'                             # Extremely fast Python package installer and resolver, written in Rust
@@ -104,6 +97,13 @@ tap 'oven-sh/bun'
 brew 'oven-sh/bun/bun'                # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one
 tap 'sst/tap'
 brew 'sst/tap/opencode'               # The AI coding agent built for the terminal
+
+if OS.mac?
+  brew 'imagesnap'                    # Tool to capture still images from an iSight or other video source
+  brew 'mas'                          # Mac App Store command-line interface
+  brew 'proctools'                    # OpenBSD and Darwin versions of pgrep, pkill, and pfind
+  brew 'telnet'                       # User interface to the TELNET protocol
+end
 
 if OS.mac?
   # casks
