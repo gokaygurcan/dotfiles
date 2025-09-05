@@ -27,15 +27,15 @@
   ignorewhitespace = change
   whitespace = nowarn
 
-[branch "dev"]
-  merge = refs/heads/dev
-  remote = origin
-  vscode-merge-base = origin/dev
+# [branch "dev"]
+#   merge = refs/heads/dev
+#   remote = origin
+#   vscode-merge-base = origin/dev
 
-[branch "main"]
-  merge = refs/heads/main
-  remote = origin
-  vscode-merge-base = origin/main
+# [branch "main"]
+#   merge = refs/heads/main
+#   remote = origin
+#   vscode-merge-base = origin/main
 
 [color]
   ui = true
@@ -58,8 +58,8 @@
   prune = true
   recurseSubmodules = on-demand
 
-[remote "origin"]
-  fetch = +refs/heads/*:refs/remotes/origin/*
+# [remote "origin"]
+#   fetch = +refs/heads/*:refs/remotes/origin/*
 
 [http]
   postBuffer = 1048576000
