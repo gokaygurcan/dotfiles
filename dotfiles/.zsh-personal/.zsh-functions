@@ -16,7 +16,7 @@ mk() {
 # update brew and global npm packages
 update() {
   # update global node packages
-  bun update -g --verbose
+  bun update -g
 
   # update/upgrade brew packages
   brew update
