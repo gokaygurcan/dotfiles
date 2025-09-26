@@ -12,3 +12,14 @@ ppid() {
 mk() {
   mkdir -p "$1" && cd "$1"
 }
+
+# update brew and global npm packages
+update() {
+  # update global node packages
+  bun update -g --verbose
+
+  # update/upgrade brew packages
+  brew update
+  brew upgrade
+  brew cleanup
+}
