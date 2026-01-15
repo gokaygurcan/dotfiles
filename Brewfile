@@ -174,6 +174,15 @@ if OS.mac?
   cask 'windsurf'                     # Agentic IDE powered by AI Flow paradigm
   cask 'wireshark'                    # Network protocol analyzer
 
+  # fonts
+  casks 'font-geist'
+  casks 'font-geist-mono'
+  casks 'font-hack'
+  casks 'font-hack-nerd-font'
+  casks 'font-monaspace'
+  casks 'font-open-sans'
+  casks 'font-roboto'
+
   # quicklook casks
   cask 'gltfquicklook'                # Quick Look plugin for glTF files
   cask 'ipynb-quicklook'              # Quick Look plugin for Jupyter/IPython notebooks
@@ -191,9 +200,9 @@ if OS.mac?
   # This means you have the --require-sha option set, perhaps in your HOMEBREW_CASK_OPTS.
   cask_args appdir: '/Applications', require_sha: false
 
-  cask 'google-chrome'                # Web browser
-  cask 'google-chrome@beta'           # Web browser
-  cask 'google-trends'                #
+  cask 'google-chrome'                # Google Chrome
+  cask 'google-chrome@beta'           # Google Chrome Beta
+  cask 'google-trends'                # Google Trends Screensaver
   cask 'logi-options+'                # Software for Logitech devices
   cask 'miro'                         # Online collaborative whiteboard platform
   cask 'paragon-ntfs'                 # Read/write support for NTFS formatted volumes
