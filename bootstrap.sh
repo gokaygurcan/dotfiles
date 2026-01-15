@@ -51,6 +51,11 @@ if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
   fi
 fi
 
+# install zsh (just in case)
+if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
+  sudo apt-get install -y zsh
+fi
+
 # install/update oh-my-zsh
 if [[ -d ~/.oh-my-zsh ]]; then
   echo "[setup] \`oh-my-zsh\` installed, skipping."
@@ -68,7 +73,7 @@ else
 fi
 
 if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
-  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
@@ -112,8 +117,8 @@ fi
 
 # clone repository
 echo "[setup] cloning dotfiles repository"
-git clone https://github.com/gokaygurcan/dotfiles.git dotfiles
-cd dotfiles
+git clone https://github.com/gokaygurcan/dotfiles.git .dotfiles
+cd .dotfiles
 
 # move dotfiles
 echo "[setup] setting up dotfiles"
@@ -159,6 +164,30 @@ for file in ~/.zsh-personal/.zsh-{aliases,functions,variables}; do
   fi
 done
 END
+
+# install docker
+if [[ $NAME == "Linux"* && $VERSION == *"Ubuntu"* ]]; then
+  # uninstall conflicting packages
+  for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+  # add gpg
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  # add apt sources
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  # update
+  sudo apt-get update -qq
+
+  # install
+  sudo apt-get install -yqq --no-install-recommends --no-install-suggests \
+    docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+fi
 
 # apply macos defaults
 if [[ $NAME == "Darwin"* && $VERSION == *"Darwin"* ]]; then
