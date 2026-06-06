@@ -24,6 +24,7 @@ brew 'caddy'                          # Powerful, enterprise-ready, open source 
 brew 'certbot'                        # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew 'cloudflared'                    # Cloudflare Tunnel client
 brew 'cmake'                          # Cross-platform make
+brew 'container'                      # Create and run Linux containers using lightweight virtual machines
 brew 'coreutils'                      # GNU File, Shell, and Text utilities
 brew 'ctop'                           # Top-like interface for container metrics
 brew 'curl'                           # Get a file from an HTTP, HTTPS or FTP server
@@ -31,7 +32,6 @@ brew 'deno'                           # Secure runtime for JavaScript and TypeSc
 brew 'devcontainer'                   # Reference implementation for the Development Containers specification
 brew 'dnsmasq'                        # Lightweight DNS forwarder and DHCP server
 brew 'docker'                         # Pack, ship and run any application as a lightweight container
-brew 'docker-completion'              # Bash, Zsh and Fish completion for Docker
 brew 'docker-compose'                 # Isolated development environments using Docker
 brew 'dungeon'                        # Classic text adventure game
 brew 'editorconfig'                   # Maintain consistent coding style between multiple editors
@@ -65,18 +65,23 @@ brew 'jpeg-xl'                        # New file format for still image compress
 brew 'jq'                             # Lightweight and flexible command-line JSON processor
 brew 'libtool'                        # Generic library support script
 brew 'llvm'                           # Next-gen compiler infrastructure
+brew 'lua'                            # Powerful, lightweight programming language
 brew 'make'                           # Utility for directing compilation
 brew 'mkcert'                         # Simple tool to make locally trusted development certificates
 brew 'nano'                           # Free (GNU) replacement for the Pico text editor
 brew 'nmap'                           # Port scanning utility for large networks
+brew 'node'                           # Open-source, cross-platform JavaScript runtime environment
 brew 'ntfy'                           # Send push notifications to your phone or desktop via PUT/POST
 brew 'nvm'                            # Manage multiple Node.js versions
 brew 'openjpeg'                       # Library for JPEG-2000 image manipulation
 brew 'openssl@3'                      # Cryptography and SSL/TLS Toolkit
 brew 'pnpm'                           # Fast, disk space efficient package manager
 brew 'pstree'                         # Show ps output as a tree
+brew 'ruby'                           # Powerful, clean, object-oriented scripting language
+brew 'rust'                           # Safe, concurrent, practical language
+brew 'rustup'                         # Rust toolchain installer
 brew 'sqlite'                         # Command-line interface for SQLite
-brew 'python@3.13'                    # Interpreted, interactive, object-oriented programming language
+brew 'python'                         # Interpreted, interactive, object-oriented programming language
 brew 'stow'                           # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew 'tailwindcss'                    # Utility-first CSS framework
 brew 'tcpdump'                        # Command-line packet analyzer
@@ -94,9 +99,9 @@ brew 'zsh-syntax-highlighting'        # Fish shell like syntax highlighting for 
 
 # custom formulae
 tap 'oven-sh/bun'
-brew 'oven-sh/bun/bun'                # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one
+brew 'oven-sh/bun/bun'                # Incredibly fast JavaScript runtime, bundler, test runner, and package manager
 tap 'sst/tap'
-brew 'sst/tap/opencode'               # The AI coding agent built for the terminal
+brew 'sst/tap/opencode'               # AI coding agent, built for the terminal
 
 if OS.mac?
   brew 'imagesnap'                    # Tool to capture still images from an iSight or other video source
@@ -109,21 +114,25 @@ if OS.mac?
   # casks
   cask_args appdir: '/Applications', require_sha: true
 
-  cask '1password'                    # "Password manager that keeps all passwords secure behind one password
+  cask '1password'                    # Password manager that keeps all passwords secure behind one password
   cask '1password-cli'                # Command-line interface for 1Password
   cask 'betterdisplay'                # Display management tool
   cask 'brewservicesmenubar'          # Menu item for starting and stopping homebrew services
   cask 'bruno'                        # Open source IDE for exploring and testing APIs
   cask 'canon-eos-utility'            # Communication with Canon EOS cameras
-  cask 'chatgpt'                      # OpenAI's official ChatGPT desktop app
   cask 'charles'                      # Web debugging Proxy application
-  cask 'chromedriver'                 # Automated testing of webapps for Google Chrome
+  cask 'chatgpt'                      # OpenAI's official ChatGPT desktop app
+  cask 'claude'                       # Anthropic's official Claude AI desktop app
+  cask 'claude-code'                  # Terminal-based AI coding assistant
+  cask 'codex-app'                    # OpenAI's Codex desktop app for managing coding agents
   cask 'cursor'                       # Write, edit, and chat about your code with AI
+  cask 'datagrip'                     # Databases and SQL IDE
   cask 'discord'                      # Voice and text chat software
   cask 'disk-inventory-x'             # Disk usage utility
   cask 'displaylink'                  # Drivers for DisplayLink docks, adapters and monitors
   cask 'exifcleaner'                  # Metadata cleaner
   cask 'figma'                        # Collaborative team software
+  cask 'finetune'                     # Per-application volume mixer, equalizer, and audio router
   cask 'firefox'                      # Web browser
   cask 'fliqlo'                       # Flip clock screensaver
   cask 'gitbutler'                    # Git client for simultaneous branches on top of your existing workflow
@@ -148,7 +157,6 @@ if OS.mac?
   cask 'ollama-app'                   # Get up and running with large language models locally
   cask 'openvpn-connect'              # Client program for the OpenVPN Access Server
   cask 'opera'                        # Web browser
-  cask 'operadriver'                  # Web browser
   cask 'osquery'                      # SQL powered operating system instrumentation and analytics
   cask 'packetsender'                 # Network utility for sending / receiving TCP, UDP, SSL
   cask 'pgadmin4'                     # Administration and development platform for PostgreSQL
@@ -162,6 +170,8 @@ if OS.mac?
   cask 'razorsql'                     # SQL query tool and SQL editor
   cask 'slack'                        # Team communication and collaboration software
   cask 'slack-cli'                    # CLI to create, run, and deploy Slack apps
+  cask 'syntax-highlight'             # Quicklook extension for source files
+  cask 'tablepro'                     # Native database client for many database types
   cask 'teamviewer'                   # Remote access and connectivity software focused on security
   cask 'telegram'                     # Messaging app with a focus on speed and security
   cask 'the-unarchiver'               # Unpacks archive files
@@ -173,6 +183,7 @@ if OS.mac?
   cask 'whatsapp'                     # Native desktop client for WhatsApp
   cask 'windsurf'                     # Agentic IDE powered by AI Flow paradigm
   cask 'wireshark'                    # Network protocol analyzer
+  cask 'zed'                          # Multiplayer code editor
 
   # fonts
   casks 'font-geist'
@@ -182,19 +193,6 @@ if OS.mac?
   casks 'font-monaspace'
   casks 'font-open-sans'
   casks 'font-roboto'
-
-  # quicklook casks
-  cask 'gltfquicklook'                # Quick Look plugin for glTF files
-  cask 'ipynb-quicklook'              # Quick Look plugin for Jupyter/IPython notebooks
-  cask 'jupyter-notebook-ql'          # Quick Look plugin for Jupyter notebooks
-  cask 'quicklook-csv'                # Quick Look plugin for CSV files
-  cask 'quicklookase'                 # Quick Look generator for Adobe Swatch Exchange files
-  cask 'qlcolorcode'                  # Quick Look plug-in that renders source code with syntax highlighting
-  cask 'qlmarkdown'                   # Quick Look generator for Markdown files
-  cask 'qlstephen'                    # Quick Look plugin for plaintext files without an extension
-  cask 'qlvideo'                      # Thumbnails, static previews, cover art and metadata for video files
-  cask 'qlzipinfo'                    # List out the contents of a zip file in the QuickLook preview
-  cask 'syntax-highlight'             # Quicklook extension for source files
 
   # Error: Cask '<name>' does not have a sha256 checksum defined and was not installed.
   # This means you have the --require-sha option set, perhaps in your HOMEBREW_CASK_OPTS.
@@ -208,9 +206,6 @@ if OS.mac?
   cask 'paragon-ntfs'                 # Read/write support for NTFS formatted volumes
   cask 'redis-insight'                # GUI for streamlined Redis application development
   cask 'spotify'                      # Music streaming service
-
-  cask 'quicklook-json'               # Quick Look plugin for JSON files
-  cask 'webpquicklook'                # Quick Look plugin for webp files
 
   # app store
   mas 'Amphetamine', id: 937984704
