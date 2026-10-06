@@ -23,6 +23,9 @@ pnpm-lock.yaml
 # Cloudflare
 **/.wrangler/
 
+# TanStack
+**/.tanstack/
+
 # test coverage
 **/coverage/
 
@@ -42,3 +45,6 @@ pnpm-lock.yaml
 **/.Trashes
 **/.VolumeIcon.icns
 **/Thumbs.db
+
+# claude
+**/.claude/settings.local.json

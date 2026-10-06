@@ -15,4 +15,5 @@ if OS.mac?
 
   # app store
   mas 'Balatro+', id: 6502451661
+  mas 'Retrocade', id: 6746784702
 end

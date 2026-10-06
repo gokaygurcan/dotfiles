@@ -4,7 +4,7 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 # make nano the default editor
 export EDITOR="nano"
 
-# cli color
+# cli color
 export CLICOLOR=1
 
 # history size

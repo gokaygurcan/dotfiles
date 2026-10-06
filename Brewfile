@@ -24,6 +24,7 @@ brew 'caddy'                          # Powerful, enterprise-ready, open source 
 brew 'certbot'                        # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew 'cloudflared'                    # Cloudflare Tunnel client
 brew 'cmake'                          # Cross-platform make
+brew 'chrome-cli'                     # Control Google Chrome from the command-line
 brew 'container'                      # Create and run Linux containers using lightweight virtual machines
 brew 'coreutils'                      # GNU File, Shell, and Text utilities
 brew 'ctop'                           # Top-like interface for container metrics
@@ -55,6 +56,7 @@ brew 'gleam'                          # Statically typed language for the Erlang
 brew 'gnupg'                          # GNU Pretty Good Privacy (PGP) package
 brew 'go'                             # Open source programming language to build simple/reliable/efficient software
 brew 'gzip'                           # Popular GNU data compression program
+brew 'herdr'                          # Agent multiplexer that lives in your terminal
 brew 'htop'                           # Improved top (interactive process viewer)
 brew 'httpie'                         # User-friendly cURL replacement (command-line HTTP client)
 brew 'icann-rdap'                     # Full-rich client for the Registry Data Access Protocol (RDAP) sponsored by ICANN
@@ -76,13 +78,15 @@ brew 'nvm'                            # Manage multiple Node.js versions
 brew 'openjpeg'                       # Library for JPEG-2000 image manipulation
 brew 'openssl@3'                      # Cryptography and SSL/TLS Toolkit
 brew 'pnpm'                           # Fast, disk space efficient package manager
+brew 'pscale'                         # CLI for PlanetScale Database
 brew 'pstree'                         # Show ps output as a tree
+brew 'python'                         # Interpreted, interactive, object-oriented programming language
 brew 'ruby'                           # Powerful, clean, object-oriented scripting language
 brew 'rust'                           # Safe, concurrent, practical language
 brew 'rustup'                         # Rust toolchain installer
 brew 'sqlite'                         # Command-line interface for SQLite
-brew 'python'                         # Interpreted, interactive, object-oriented programming language
 brew 'stow'                           # Organize software neatly under a single directory tree (e.g. /usr/local)
+brew 'tailscale'                      # Easiest, most secure way to use WireGuard and 2FA
 brew 'tailwindcss'                    # Utility-first CSS framework
 brew 'tcpdump'                        # Command-line packet analyzer
 brew 'tmux'                           # Terminal multiplexer
@@ -117,6 +121,7 @@ if OS.mac?
   cask '1password'                    # Password manager that keeps all passwords secure behind one password
   cask '1password-cli'                # Command-line interface for 1Password
   cask 'betterdisplay'                # Display management tool
+  cask 'block-buzz'                   # Workspace for humans and AI agents
   cask 'brewservicesmenubar'          # Menu item for starting and stopping homebrew services
   cask 'bruno'                        # Open source IDE for exploring and testing APIs
   cask 'canon-eos-utility'            # Communication with Canon EOS cameras
@@ -124,13 +129,11 @@ if OS.mac?
   cask 'chatgpt'                      # OpenAI's official ChatGPT desktop app
   cask 'claude'                       # Anthropic's official Claude AI desktop app
   cask 'claude-code'                  # Terminal-based AI coding assistant
-  cask 'codex-app'                    # OpenAI's Codex desktop app for managing coding agents
   cask 'cursor'                       # Write, edit, and chat about your code with AI
   cask 'datagrip'                     # Databases and SQL IDE
+  cask 'deepseek-harness'             # Plugin-based AI agent desktop application
   cask 'discord'                      # Voice and text chat software
-  cask 'disk-inventory-x'             # Disk usage utility
   cask 'displaylink'                  # Drivers for DisplayLink docks, adapters and monitors
-  cask 'exifcleaner'                  # Metadata cleaner
   cask 'figma'                        # Collaborative team software
   cask 'finetune'                     # Per-application volume mixer, equalizer, and audio router
   cask 'firefox'                      # Web browser
@@ -139,7 +142,9 @@ if OS.mac?
   cask 'github'                       # Desktop client for GitHub repositories
   cask 'gpg-suite'                    # Tools to protect your emails and files
   cask 'hammerspoon'                  # Desktop automation application
+  cask 'handy'                        # Speech to text application
   cask 'hiddenbar'                    # Utility to hide menu bar items
+  cask 'homebrew-app'                 # Homebrew's official GUI
   cask 'kap'                          # Open-source screen recorder built with web technology
   cask 'karabiner-elements'           # Keyboard customiser
   cask 'leader-key'                   # Application launcher
@@ -155,6 +160,7 @@ if OS.mac?
   cask 'obs'                          # Open-source software for live streaming and screen recording
   cask 'obsidian'                     # Knowledge base that works on top of a local folder of plain text Markdown files
   cask 'ollama-app'                   # Get up and running with large language models locally
+  cask 'openusage'                    # AI usage tracker for Cursor, Claude Code, Codex, Copilot and more
   cask 'openvpn-connect'              # Client program for the OpenVPN Access Server
   cask 'opera'                        # Web browser
   cask 'osquery'                      # SQL powered operating system instrumentation and analytics
@@ -172,6 +178,7 @@ if OS.mac?
   cask 'slack-cli'                    # CLI to create, run, and deploy Slack apps
   cask 'syntax-highlight'             # Quicklook extension for source files
   cask 'tablepro'                     # Native database client for many database types
+  cask 'tailscale'                    # Mesh VPN based on WireGuard
   cask 'teamviewer'                   # Remote access and connectivity software focused on security
   cask 'telegram'                     # Messaging app with a focus on speed and security
   cask 'the-unarchiver'               # Unpacks archive files
@@ -201,8 +208,8 @@ if OS.mac?
   cask 'google-chrome'                # Google Chrome
   cask 'google-chrome@beta'           # Google Chrome Beta
   cask 'google-trends'                # Google Trends Screensaver
-  cask 'logi-options+'                # Software for Logitech devices
   cask 'miro'                         # Online collaborative whiteboard platform
+  cask 'openlogi'                     # Local-first alternative to Logitech Options+ for HID++ devices
   cask 'paragon-ntfs'                 # Read/write support for NTFS formatted volumes
   cask 'redis-insight'                # GUI for streamlined Redis application development
   cask 'spotify'                      # Music streaming service

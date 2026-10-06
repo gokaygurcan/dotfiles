@@ -12,7 +12,7 @@ alias .5="cd ../../../../../"
 
 # list
 alias l="ls -lah"   # list all human readable
-alias lh="ls -d .*" # list hidden files
+alias lh="ls -d .*" # list hidden files
 alias lT="ls -ltr"  # list sort by time
 alias lS="ls -Slr"  # list sort by size
 
